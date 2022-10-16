@@ -9,7 +9,7 @@ function App() {
           <SearchEngine />
           <small>
             <a
-              href="https://github.com/Leo-Tampaare/vanilla-weather-app"
+              href="https://github.com/Leo-Tampaare/weather-react"
               target="_blank"
               rel="noreferrer"
             >

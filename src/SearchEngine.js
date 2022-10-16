@@ -6,6 +6,7 @@ import Weather from "./Weather";
 export default function SearchEngine() {
   let [city, setCity] = useState("London");
   let [searchData, setData] = useState(null);
+  let [firstLoad, setLoadStatus] = useState(true);
 
   let apiKey = "349d90e7a285f14e8d2236c5925edbde";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -26,9 +27,9 @@ export default function SearchEngine() {
     setCity(event.target.value);
   }
 
-  if (city) {
+  if (firstLoad) {
     axios.get(apiUrl).then(citySearch);
-    setCity(null);
+    setLoadStatus(false);
   }
 
   return (
