@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
+import WeatherTemp from "./WeatherTemp";
 
 export default function Weather(props) {
-  let [temperature, setTemperature] = useState(props.data[0].main.temp);
-  let [celsiusStatus, setCelsiusStatus] = useState("active");
-  let [fahrenheitStatus, setFahrenheitStatus] = useState(null);
-
   console.log(props.data[0]);
   let icon = `http://openweathermap.org/img/wn/${props.data[0].weather[0].icon}@2x.png`;
 
@@ -31,20 +28,6 @@ export default function Weather(props) {
     return `${day} ${hours}:${minutes}`;
   }
 
-  function celsiusTemp(event) {
-    event.preventDefault();
-    setTemperature(props.data[0].main.temp);
-    setCelsiusStatus("active");
-    setFahrenheitStatus(null);
-  }
-
-  function fahrenheitTemp(event) {
-    event.preventDefault();
-    setTemperature((props.data[0].main.temp * 9) / 5 + 32);
-    setCelsiusStatus(null);
-    setFahrenheitStatus("active");
-  }
-
   return (
     <div>
       <div className="city">{props.data[0].name}</div>
@@ -57,16 +40,7 @@ export default function Weather(props) {
       <div className="row">
         <div className="col-7">
           <img src={icon} alt="" className="icon" />
-          <span className="temperature">{Math.round(temperature)}</span>
-          <span className="units">
-            <a href="/" className={celsiusStatus} onClick={celsiusTemp}>
-              °C
-            </a>{" "}
-            |{" "}
-            <a href="/" className={fahrenheitStatus} onClick={fahrenheitTemp}>
-              °F
-            </a>
-          </span>
+          <WeatherTemp celsius={props.data[0].main.temp} />
         </div>
         <div className="col-5">
           <ul>
