@@ -36,19 +36,25 @@ export default function WeatherTemp(props) {
       </span>
     );
   } else {
-    <span>
-      <span className="temperature">
-        {Math.round((props.celsius * 9) / 5 + 32)}
+    return (
+      <span>
+        <span className="temperature">
+          {Math.round((props.celsius * 9) / 5 + 32)}
+        </span>
+        <span className="units">
+          <a href="/" className={tempStatus.celsius} onClick={celsiusTemp}>
+            °C
+          </a>{" "}
+          |{" "}
+          <a
+            href="/"
+            className={tempStatus.fahrenheit}
+            onClick={fahrenheitTemp}
+          >
+            °F
+          </a>
+        </span>
       </span>
-      <span className="units">
-        <a href="/" className={tempStatus.celsius} onClick={celsiusTemp}>
-          °C
-        </a>{" "}
-        |{" "}
-        <a href="/" className={tempStatus.fahrenheit} onClick={fahrenheitTemp}>
-          °F
-        </a>
-      </span>
-    </span>;
+    );
   }
 }
