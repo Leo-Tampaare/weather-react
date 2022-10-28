@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function Weather(props) {
-  console.log(props.data[0]);
   let icon = `http://openweathermap.org/img/wn/${props.data[0].weather[0].icon}@2x.png`;
 
   function formatDate(timestamp) {
