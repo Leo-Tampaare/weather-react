@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Oval } from "react-loader-spinner";
 import Weather from "./Weather";
+import WeatherForecast from "./WeatherForecast";
 
 export default function SearchEngine() {
   let [city, setCity] = useState("London");
@@ -44,11 +45,13 @@ export default function SearchEngine() {
           onChange={updateCity}
         />
         <input className="form-submit" type="submit" value="Search" />
-        <i className="fa-solid fa-location-dot geo-icon"></i>
       </form>
 
       {searchData ? (
-        <Weather data={searchData} />
+        <span>
+          <Weather data={searchData} />
+          <WeatherForecast coords={searchData[0].coord} />
+        </span>
       ) : (
         <div className="d-flex justify-content-center p-5">
           <Oval
@@ -63,8 +66,6 @@ export default function SearchEngine() {
           />
         </div>
       )}
-      <hr />
-      <div className="row weather-forecast"></div>
     </div>
   );
 }
